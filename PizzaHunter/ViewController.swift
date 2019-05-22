@@ -72,10 +72,10 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var pin = MKAnnotationView(annotation: annotation, reuseIdentifier: "pins")
-        
-        if let title = annotation.title, let actualTitle = title {
+          pin.image = UIImage(named: "MobileMakerIconPinImage")
+        if let title = annotation.subtitle, let actualTitle = title {
             if actualTitle == "Pizza Hut" {
-                pin.image = UIImage(named: "3d profile")
+                pin.image = UIImage(named: "MobileMakerIconPinImage")
 
             }
             else {
@@ -93,6 +93,10 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
         } else {
             return pin
         }
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+//        view.annotation?.subtitle =
     }
 
 
