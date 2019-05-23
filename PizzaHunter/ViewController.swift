@@ -16,6 +16,7 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
     var currentLocation : CLLocation!
     var parks : [MKMapItem] = []
     var address : String = ""
+    var name : String = "name"
     
     
     
@@ -57,6 +58,7 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = mapItem.placemark.coordinate
                 annotation.title = mapItem.name
+                annotation.subtitle = mapItem.phoneNumber
                 self.mapView.addAnnotation(annotation)
             }
         }
@@ -75,15 +77,11 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
         var pin = MKAnnotationView(annotation: annotation, reuseIdentifier: "pins")
           pin.image = UIImage(named: "MobileMakerIconPinImage")
         if let title = annotation.subtitle, let actualTitle = title {
-            if actualTitle == "Pizza Hut" {
+            if actualTitle != "Pizza Hkjlut" {
                 pin.image = UIImage(named: "MobileMakerIconPinImage")
-
             }
             else {
-               
                 pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-                
-                
             }
         }
         pin.canShowCallout = true
@@ -106,7 +104,6 @@ class ViewController:  UIViewController, CLLocationManagerDelegate, MKMapViewDel
                 print("\(self.address)")
                 let alertController = UIAlertController(title: "Address", message: "\(self.address)", preferredStyle: .alert)
                 let action1 = UIAlertAction(title: "Okay", style: .default) { (UIAlertAction) in
-                    
                 }
                 
                 alertController.addAction(action1)
